@@ -113,4 +113,4 @@ for curr_index in range(len(recipe_urls_df)):
     curr_recipe = Recipe(curr_url)
     output_df.loc[curr_index] = [getattr(curr_recipe, recipe_attrib)() for recipe_attrib in recipe_attribs]
     time.sleep(random.uniform(0.15, 0.20))
-output_df.to_csv('test.csv')
+output_df.to_csv('data/jamie_oliver_mains.csv')

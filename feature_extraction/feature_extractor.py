@@ -20,14 +20,15 @@ for ingredients in df['ingredients']:
             ingredient = ingredient.split(" ")
             vocabulary.update(ingredient)
 most_common_words = []
-top_common_words = 150
+top_common_words = 230
 for word, freq in vocabulary.most_common(top_common_words):
     most_common_words.append(word)
 measures = ['teaspoon', 't', 'tsp', 'tsp.', 'tablespoon', 'T', 'tb', 'tbsp']
 stop_words = stopwords.words('english')
-additional_common_words = ['higher', 'welfare', 'free', 'range']
-excused_common_words = ['chicken', 'beef', 'duck', 'port', 'fillets','parmesan', 'tomato', 'potatoes', 'lemon', 'carrots']
+additional_common_words = ['higher', 'welfare', 'free', 'range', 'sprig', 'leaf']
+excused_common_words = ['chicken', 'beef', 'duck','lamb', 'pork', 'fillets','parmesan', 'tomato', 'potatoes', 'lemon', 'carrots']
 most_common_words = most_common_words + additional_common_words
+print(most_common_words)
 for word in excused_common_words:
     if word in most_common_words:
         most_common_words.remove(word)
@@ -57,4 +58,4 @@ def ingredient_processing(ingredient_list):
 
 df['trimmed_ingredients'] = df['ingredients'].apply(lambda x : ingredient_processing(x))
 df = df.dropna()
-df.to_csv("test2.csv", index=False)
+df.to_csv("data/jamie_oliver_mains_trimmed.csv", index=False)
