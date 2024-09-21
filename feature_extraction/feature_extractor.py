@@ -28,13 +28,15 @@ stop_words = stopwords.words('english')
 additional_common_words = ['higher', 'welfare', 'free', 'range', 'sprig', 'leaf']
 excused_common_words = ['chicken', 'beef', 'duck','lamb', 'pork', 'fillets','parmesan', 'tomato', 'potatoes', 'lemon', 'carrots']
 most_common_words = most_common_words + additional_common_words
-print(most_common_words)
 for word in excused_common_words:
     if word in most_common_words:
         most_common_words.remove(word)
 
 def ingredient_processing(ingredient_list):
-    ingredients = ast.literal_eval(ingredient_list)
+    if not isinstance(ingredient_list, list):
+        ingredients = ast.literal_eval(ingredient_list)
+    else:
+        ingredients = ingredient_list
 
     translator = str.maketrans("", "", string.punctuation)
     lemmatizer = nltk.WordNetLemmatizer()
